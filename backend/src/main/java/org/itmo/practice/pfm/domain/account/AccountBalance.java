@@ -1,6 +1,8 @@
 package org.itmo.practice.pfm.domain.account;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import org.itmo.practice.pfm.domain.account.exception.CurrencyMismatchException;
 import org.itmo.practice.pfm.domain.funds.Currency;
@@ -12,6 +14,7 @@ import org.itmo.practice.pfm.domain.funds.Money;
 @Embeddable
 public class AccountBalance {
     private int balance;
+    @Enumerated(EnumType.STRING)
     private Currency currency;
 
     public AccountBalance(int balance, Currency currency) {

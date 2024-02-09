@@ -1,6 +1,8 @@
 package org.itmo.practice.pfm.domain.funds;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import org.itmo.practice.pfm.domain.funds.exception.InvalidAmountException;
 
@@ -10,6 +12,8 @@ import org.itmo.practice.pfm.domain.funds.exception.InvalidAmountException;
 @Embeddable
 public class Money {
     private int amount;
+
+    @Enumerated(EnumType.STRING)
     private Currency currency;
 
     public Money(int amount, Currency currency) {
