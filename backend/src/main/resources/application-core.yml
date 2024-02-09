@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pfm
+    username: postgres
+    password: postgres
+  liquibase:
+    change-log: db/changelog/db-changelog.xml
