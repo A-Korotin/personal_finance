@@ -17,13 +17,16 @@ public class ExpenseCategory {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    private String userId;
+
     @Embedded
     private CashFlowName name;
 
     @Embedded
     private Money monthlyExpense;
 
-    public ExpenseCategory(CashFlowName name, Money monthlyExpense) {
+    public ExpenseCategory(String userId, CashFlowName name, Money monthlyExpense) {
+        this.userId = Objects.requireNonNull(userId);
         this.name = Objects.requireNonNull(name);
         this.monthlyExpense = Objects.requireNonNull(monthlyExpense);
     }
