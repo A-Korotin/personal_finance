@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                         .requestMatchers(SWAGGER_WHITELIST).anonymous()
-                        .anyRequest().permitAll())
+                        .anyRequest().authenticated())
                 .cors(Customizer.withDefaults());
         return security.build();
     }
