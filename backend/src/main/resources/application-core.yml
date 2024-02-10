@@ -12,5 +12,5 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/auth/realms/PFM
-          jwk-set-uri: http://localhost:8080/auth/realms/PFM/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8080/auth/realms/pfm
+          jwk-set-uri: http://localhost:8080/auth/realms/pfm/protocol/openid-connect/certs
