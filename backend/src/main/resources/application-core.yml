@@ -8,3 +8,9 @@ spring:
     password: postgres
   liquibase:
     change-log: db/changelog/db-changelog.xml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/PFM
+          jwk-set-uri: http://localhost:8080/auth/realms/PFM/protocol/openid-connect/certs
