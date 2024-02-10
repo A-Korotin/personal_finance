@@ -30,4 +30,8 @@ public class CrudService<T, ID> {
         repository.deleteById(id);
     }
 
+    public boolean existsById(ID id) {
+        return repository.existsById(id);
+    }
+
 }
