@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-@MappedSuperclass
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = {"id"})
