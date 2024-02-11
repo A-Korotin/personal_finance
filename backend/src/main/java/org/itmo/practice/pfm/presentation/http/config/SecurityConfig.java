@@ -1,4 +1,4 @@
-package org.itmo.practice.pfm.presentation.config;
+package org.itmo.practice.pfm.presentation.http.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
