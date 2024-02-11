@@ -39,7 +39,7 @@ public class AccountRestController extends CrudRestController<UUID, UserAccount,
 
     @GetMapping
     @PageableAsQueryParam
-    public ResponseEntity<Page<OutputAccountDto>> findAll(@AuthenticationPrincipal Principal principal,
+    public ResponseEntity<Page<OutputAccountDto>> findAll(Principal principal,
                                                           Pageable pageable) {
         return super.findAllByUserId(principal.getName(), pageable);
     }
@@ -53,7 +53,7 @@ public class AccountRestController extends CrudRestController<UUID, UserAccount,
 
     @PostMapping
     public ResponseEntity<OutputAccountDto> createAccount(@Valid @RequestBody AccountDto dto,
-                                                          @AuthenticationPrincipal Principal principal) {
+                                                          Principal principal) {
         return super.create(dto, principal.getName());
     }
 
@@ -61,7 +61,7 @@ public class AccountRestController extends CrudRestController<UUID, UserAccount,
     @PreAuthorize("@accountSecurity.userHasAccessToModify(#id, authentication.name)")
     public ResponseEntity<OutputAccountDto> editAccountById(@PathVariable UUID id,
                                                             @Valid @RequestBody AccountDto dto,
-                                                            @AuthenticationPrincipal Principal principal) {
+                                                            Principal principal) {
         return this.update(id, dto, principal.getName());
     }
 
