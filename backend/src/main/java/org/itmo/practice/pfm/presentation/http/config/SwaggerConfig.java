@@ -1,4 +1,4 @@
-package org.itmo.practice.pfm.presentation.config;
+package org.itmo.practice.pfm.presentation.http.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
