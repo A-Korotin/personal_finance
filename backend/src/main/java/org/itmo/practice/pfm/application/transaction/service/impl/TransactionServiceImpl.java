@@ -20,8 +20,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction save(Transaction transaction) {
-        ZonedDateTime now = ZonedDateTime.now();
-        transaction.execute(now);
         return repository.save(transaction);
     }
 
