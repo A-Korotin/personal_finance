@@ -3,6 +3,7 @@ package org.itmo.practice.pfm.domain.transaction;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.itmo.practice.pfm.domain.funds.Money;
 import org.itmo.practice.pfm.domain.account.UserAccount;
@@ -13,6 +14,7 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class IncomeTransaction extends Transaction {
 
     @ManyToOne
