@@ -33,6 +33,11 @@ public class UserAccount {
         this.name = Objects.requireNonNull(name);
     }
 
+    public UserAccount(UUID id, String userId, AccountBalance balance, AccountName name) {
+        this(userId, balance, name);
+        this.id = Objects.requireNonNull(id);
+    }
+
     public void withdraw(Money money) {
         balance = balance.withdraw(money);
     }
