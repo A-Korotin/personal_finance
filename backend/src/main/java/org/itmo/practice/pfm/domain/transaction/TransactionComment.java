@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import org.itmo.practice.pfm.domain.transaction.exception.TransactionCommentException;
+
 @Embeddable
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,7 +23,7 @@ public class TransactionComment {
 
         comment = comment.strip();
         if (comment.length() >= 100) {
-            throw new RuntimeException(); //todo throw domain exception
+            throw new TransactionCommentException("Transaction comment should be between 0 and 100 characters");
         }
         this.comment = comment;
     }

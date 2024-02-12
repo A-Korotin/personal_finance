@@ -3,6 +3,7 @@ package org.itmo.practice.pfm.domain.transaction;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.itmo.practice.pfm.domain.funds.Money;
 import org.itmo.practice.pfm.domain.transaction.exception.TransactionExecutionException;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = {"id"})
+@Getter
 public abstract class Transaction {
     @Id
     @GeneratedValue
