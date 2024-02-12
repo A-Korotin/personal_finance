@@ -43,3 +43,18 @@ services:
       - ./volumes/app-db:/var/lib/postgresql/data
     ports:
       - "5433:5432"
+
+  application:
+    depends_on:
+      - app-db
+    pull_policy: build
+    build:
+      dockerfile: Dockerfile
+      context: ../backend/
+      target: prod
+    environment:
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=http://keycloak:8080/auth/realms/pfm
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI=http://keycloak:8080/auth/realms/pfm/protocol/openid-connect/certs
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://app-db:5432/pfm
+    ports:
+      - "8081:8081"
