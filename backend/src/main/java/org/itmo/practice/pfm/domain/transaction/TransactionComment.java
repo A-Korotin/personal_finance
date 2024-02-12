@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import org.itmo.practice.pfm.domain.transaction.exception.TransactionCommentException;
 
 @Embeddable
