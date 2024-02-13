@@ -1,5 +1,9 @@
 package org.itmo.practice.pfm.presentation.http.cashflow.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.itmo.practice.pfm.application.cashflow.service.ExpenseCategoryService;
@@ -37,24 +41,46 @@ public class ExpenseCategoryRestController
 
     @GetMapping
     @PageableAsQueryParam
+    @Operation(summary = "Find all",
+            description = "Find all expense categories owned by user",
+            responses = {@ApiResponse(description = "OK", responseCode = "200", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))})})
     public ResponseEntity<Page<OutputCashFlowDto>> findAll(Principal principal,
                                                            Pageable pageable) {
         return super.findAllByUserId(principal.getName(), pageable);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get expense category",
+            description = "Get expense category by ID",
+            responses = {@ApiResponse(description = "OK", responseCode = "200", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Bad request", responseCode = "400", content = {@Content(schema = @Schema(implementation = String.class))}),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))}),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = {@Content(schema = @Schema(implementation = Void.class))}),
+                    @ApiResponse(description = "Not found", responseCode = "404", content = {@Content(schema = @Schema(implementation = Void.class))})})
     @PreAuthorize("@expenseSecurity.userHasAccessToView(#id, authentication.name)")
     public ResponseEntity<OutputCashFlowDto> findById(@PathVariable UUID id) {
         return super.findById(id);
     }
 
     @PostMapping
+    @Operation(summary = "Create expense category",
+            responses = {@ApiResponse(description = "Created", responseCode = "201", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Bad request", responseCode = "400", content = {@Content(schema = @Schema(implementation = String.class))}),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))})})
     public ResponseEntity<OutputCashFlowDto> createCategory(@Valid @RequestBody CashFlowDto dto,
                                                             Principal principal) {
         return super.create(dto, principal.getName());
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Edit expense category",
+            description = "Edit expense category by ID",
+            responses = {@ApiResponse(description = "OK", responseCode = "200", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Bad request", responseCode = "400", content = {@Content(schema = @Schema(implementation = String.class))}),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))}),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = {@Content(schema = @Schema(implementation = Void.class))}),
+                    @ApiResponse(description = "Not found", responseCode = "404", content = {@Content(schema = @Schema(implementation = Void.class))})})
     @PreAuthorize("@expenseSecurity.userHasAccessToModify(#id, authentication.name)")
     public ResponseEntity<OutputCashFlowDto> updateCategory(@Valid @RequestBody CashFlowDto dto,
                                                             @PathVariable UUID id,
@@ -63,6 +89,13 @@ public class ExpenseCategoryRestController
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete account",
+            description = "Delete account by ID",
+            responses = {@ApiResponse(description = "OK", responseCode = "200", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Bad request", responseCode = "400", content = {@Content(schema = @Schema(implementation = String.class))}),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))}),
+                    @ApiResponse(description = "Forbidden", responseCode = "403", content = {@Content(schema = @Schema(implementation = Void.class))}),
+                    @ApiResponse(description = "Not found", responseCode = "404", content = {@Content(schema = @Schema(implementation = Void.class))})})
     @PreAuthorize("@expenseSecurity.userHasAccessToModify(#id, authentication.name)")
     public ResponseEntity<Void> deleteCategory(@PathVariable UUID id) {
         return super.delete(id);
