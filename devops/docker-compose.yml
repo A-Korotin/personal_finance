@@ -58,3 +58,4 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://app-db:5432/pfm
     ports:
       - "8081:8081"
+
