@@ -41,6 +41,7 @@ public class IncomeTransactionMapper
 
         dto.id = entity.getId();
         dto.type = entity.getType();
+        dto.userId = entity.getUserId();
         dto.comment = entity.getComment().getComment();
         dto.status = entity.getStatus();
         dto.amount = entity.getMoney().getAmount();
