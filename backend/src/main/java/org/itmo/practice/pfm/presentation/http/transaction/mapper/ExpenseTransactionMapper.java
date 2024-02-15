@@ -41,6 +41,7 @@ public class ExpenseTransactionMapper
                 .categoryId(entity.getCategory().getId()).build();
 
         dto.id = entity.getId();
+        dto.userId = entity.getUserId();
         dto.type = entity.getType();
         dto.comment = entity.getComment().getComment();
         dto.status = entity.getStatus();

@@ -1,5 +1,9 @@
 package org.itmo.practice.pfm.presentation.http.transaction.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +36,10 @@ public class TransferTransactionRestController {
     private final TransferTransactionMapper mapper;
 
     @PostMapping
+    @Operation(summary = "Create transfer transaction",
+            responses = {@ApiResponse(description = "Created", responseCode = "201", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Bad request", responseCode = "400", content = {@Content(schema = @Schema(implementation = String.class))}),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))})})
     public ResponseEntity<OutputTransferTransactionDto> createTransfer(
             Principal principal,
             @Valid @RequestBody TransferTransactionDto dto) {

@@ -1,5 +1,9 @@
 package org.itmo.practice.pfm.presentation.http.transaction.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -29,6 +33,10 @@ public class IncomeTransactionRestController {
     private final IncomeTransactionMapper mapper;
 
     @PostMapping
+    @Operation(summary = "Create income transaction",
+            responses = {@ApiResponse(description = "Created", responseCode = "201", useReturnTypeSchema = true),
+                    @ApiResponse(description = "Bad request", responseCode = "400", content = {@Content(schema = @Schema(implementation = String.class))}),
+                    @ApiResponse(description = "Not authorized", responseCode = "401", content = {@Content(schema = @Schema(implementation = Void.class))})})
     public ResponseEntity<OutputIncomeTransactionDto> createIncome(
             Principal principal,
             @Valid @RequestBody IncomeTransactionDto dto) {
